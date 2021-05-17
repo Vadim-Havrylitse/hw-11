@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
+
 public class Main {
 
     public static final long time = System.currentTimeMillis();
@@ -15,43 +16,8 @@ public class Main {
     }
 
     public static void task1() {
-        new Thread(new Massage()).start();
-        new Thread(new Massage2()).start();
-    }
-
-    static class Massage implements Runnable {
-
-        @Override
-        public void run() {
-            while (true) {
-                System.out.println((System.currentTimeMillis() - Main.time) / 1000 + " sec");
-                try {
-                    Thread.sleep(1000);
-
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                Massage2.counterSec++;
-            }
-        }
-    }
-
-    static class Massage2 implements Runnable {
-        static volatile long counterSec;
-
-        @Override
-        public void run() {
-            while (true) {
-                if (counterSec % 5 == 0) {
-                    System.out.println(("Прошло " + counterSec + " секунд"));
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
+        new Thread(new Message()).start();
+        new Thread(new Message2()).start();
     }
 
 
